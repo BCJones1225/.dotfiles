@@ -22,7 +22,7 @@
     # # "Hello, world!" when run.
     # pkgs.hello
 
-    tree git lunarvim wget transgui unar
+    tree git lunarvim wget transgui unar protonvpn-gui blesh
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -75,4 +75,11 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+  programs.bash = {
+    enable = true;
+    shellAliases = {
+      ll = "ls -al --color";
+      ".." = "cd ..";
+    };
+  };
 }
