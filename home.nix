@@ -22,7 +22,7 @@
     # # "Hello, world!" when run.
     # pkgs.hello
 
-    tree git lunarvim wget transgui unar protonvpn-gui blesh
+    tree git lunarvim wget mastodon rssguard unar protonvpn-gui blesh github-cli
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

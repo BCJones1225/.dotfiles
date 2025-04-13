@@ -107,7 +107,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    kitty brave rox-filer wofi waybar hyprpaper nerdfonts blueman 
+    kitty brave rox-filer wofi waybar hyprpaper nerdfonts blueman xclip 
   ];
   
   fonts.packages = with pkgs; [ nerdfonts ];
@@ -139,16 +139,29 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # security.acme = {
+  #   acceptTerms = true;
+  #   defaults.email = "bryan@geopoliticaloccult.net";
+  # };
+  # services.mastodon = {
+  #   enable = true;
+  #   localDomain = "geopoliticaloccult.net"; # Replace with your own domain
+  #   configureNginx = true;
+  #   smtp.fromAddress = "bryan@geopoliticaloccult.net"; # Email address used by Mastodon to send emails, replace with your own
+  #   streamingProcesses = 3; # Number of processes used. It is recommended to set to the number of CPU cores minus one
+  #   extraConfig.SINGLE_USER_MODE = "true";
+  # };
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedUDPPorts = [ 80 443 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+  # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
