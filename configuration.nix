@@ -139,19 +139,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # security.acme = {
-  #   acceptTerms = true;
-  #   defaults.email = "bryan@geopoliticaloccult.net";
-  # };
-  # services.mastodon = {
-  #   enable = true;
-  #   localDomain = "geopoliticaloccult.net"; # Replace with your own domain
-  #   configureNginx = true;
-  #   smtp.fromAddress = "bryan@geopoliticaloccult.net"; # Email address used by Mastodon to send emails, replace with your own
-  #   streamingProcesses = 3; # Number of processes used. It is recommended to set to the number of CPU cores minus one
-  #   extraConfig.SINGLE_USER_MODE = "true";
-  # };
-
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 80 443 ];
   networking.firewall.allowedUDPPorts = [ 80 443 ];
