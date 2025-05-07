@@ -22,7 +22,8 @@
     # # "Hello, world!" when run.
     # pkgs.hello
 
-    tree git lunarvim wget mastodon rssguard unar protonvpn-gui blesh github-cli
+    tree git lunarvim wget rssguard unar protonvpn-gui blesh github-cli
+    obsidian dino
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -69,17 +70,37 @@
   #
   #  /etc/profiles/per-user/bryancj/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
+  home = {
+    sessionVariables = {
+      EDITOR = "/home/bryancj/.nix-profile/bin/lvim";
+    };
   };
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      ll = "ls -al --color";
-      ".." = "cd ..";
+  programs = {
+    home-manager.enable = true;
+
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      enableVteIntegration = true;
+      shellAliases = {
+        ll = "ls -al --color";
+        ".." = "cd ..";
+        slvim = "sudo lvim";
+      };
+
+      bashrcExtra = ''export NIXPKGS_ALLOW_UNFREE=1'';
     };
+
+    kitty.shellIntegration.enableBashIntegration = true;
   };
+
+  services.gpg-agent = {
+    enable = true;
+    enableBashIntegration = true;
+    enableScDaemon = true;
+    enableSshSupport = true;
+  };
+
 }
