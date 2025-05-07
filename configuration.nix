@@ -120,6 +120,7 @@
       enable = true;
       enableSSHSupport = true;
     };
+
     chromium = {
       enable = true;
       extraOpts = {
@@ -131,6 +132,13 @@
           "en-US"
         ];
       };
+    };
+
+    bash = {
+      completion.enable = true;
+      blesh.enable = true;
+      vteIntegration = true;
+      enableLsColors = true;
     };
   };
 
