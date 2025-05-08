@@ -108,6 +108,7 @@
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty brave rox-filer wofi waybar hyprpaper nerdfonts blueman xclip age
+    mpv
   ];
   
   fonts.packages = with pkgs; [ nerdfonts ];
