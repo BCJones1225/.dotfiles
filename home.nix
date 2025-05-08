@@ -22,8 +22,8 @@
     # # "Hello, world!" when run.
     # pkgs.hello
 
-    tree git lunarvim wget rssguard unar protonvpn-gui blesh github-cli
-    obsidian dino
+    tree git lunarvim wget unar protonvpn-gui blesh github-cli obsidian 
+    dino
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
