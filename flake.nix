@@ -20,14 +20,16 @@
           inherit system;
           modules = [ 
             ./configuration.nix
-            sops-nix.nixosModules.sops 
+            sops-nix.nixosModules.sops
           ];
         };
       };
       homeConfigurations = {
         bryancj = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [./home.nix ];
+          modules = [
+            ./home.nix
+          ];
         };
       };
     };

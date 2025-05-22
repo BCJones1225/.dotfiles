@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports =
@@ -34,6 +34,77 @@
     # font = "Lat2-Terminus16";
     # keyMap = "us";
     # useXkbConfig = true; # use xkb.options in tty.
+  # };
+
+  sops = {
+    defaultSopsFile = /etc/nixos/secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    secrets = {
+      "tt-rss/password" = { };
+      "tt-rss/psql/password" = { };
+    };
+  };
+
+  # services ={
+  #   mastodon = {
+  #     enable = true;
+  #     localDomain = "social.geopoliticaloccult.net";
+  #     configureNginx = true;
+  #     smtp.fromAddress = "bryan@geopoliticaloccult.net";
+  #     streamingProcesses = 3;
+  #   };
+
+  #   postgresqlBackup = {
+  #     enable = true;
+  #     databases = [ "mastodon" "tt_rss" ];
+  #   };
+
+  #   tt-rss = {
+  #     enable = true;
+  #     database = {
+  #       type = "pgsql";
+  #       passwordFile = config.sops.secrets."tt-rss/psql/password".path;
+  #     };
+
+  #     email = {
+  #       fromAddress = "bryan@geopoliticaloccult.net";
+  #       fromName = "Bryan at geopoliticaloccult.net";
+  #     };
+
+  #     virtualHost = "news.geopoliticaloccult.net";
+  #     selfUrlPath = "https://news.geopoliticaloccult.net/";
+  #   };
+
+  #   postgresql.enable = true;
+
+  #   nginx = {
+  #     enable = true;
+  #     recommendedTlsSettings = true;
+  #     recommendedGzipSettings = true;
+  #     recommendedOptimisation = true;
+  #     recommendedZstdSettings = true;
+  #     recommendedProxySettings = true;
+  #     recommendedBrotliSettings = true;
+  #     virtualHosts = {
+  #       "social.geopoliticaloccult.net" = {
+  #         enableACME = true;
+  #         forceSSL = true;
+  #       };
+
+  #       "news.geopoliticaloccult.net" = {
+  #         enableACME = true;
+  #         forceSSL = true;
+  #       };
+  #     };
+  #   };
+  # };
+
+  # security.acme = {
+  #   acceptTerms = true;
+  #   certs = {
+  #     "social.geopoliticaloccult.net".email = "bryan@geopoliticaloccult.net";
+  #     "news.geopoliticaloccult.net".email = "bryan@geopoliticaloccult.net";
+  #   };
   # };
 
   # Enable the X11 windowing system.
@@ -98,7 +169,6 @@
   users.users.bryancj = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [];
   };
 
   # programs.firefox.enable = true;
@@ -108,7 +178,7 @@
   environment.systemPackages = with pkgs; [
     # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     kitty brave rox-filer wofi waybar hyprpaper nerdfonts blueman xclip age
-    mpv
+    mpv sops
   ];
   
   fonts.packages = with pkgs; [ nerdfonts ];
@@ -149,8 +219,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  networking.firewall.allowedUDPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 5432 9000 ];
+  # networking.firewall.allowedUDPPorts = [ 80 443 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
